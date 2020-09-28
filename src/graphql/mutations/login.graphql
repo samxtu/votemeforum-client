@@ -1,0 +1,5 @@
+mutation Login($params: NameOrEmailPasswordArgs!) {
+  login(params: $params) {
+    ...UserResponse
+  }
+}

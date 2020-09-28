@@ -1,0 +1,5 @@
+mutation Register($params: UsernameEmailPasswordArgs!) {
+  register(params: $params) {
+    ...UserResponse
+  }
+}
