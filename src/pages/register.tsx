@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { Box, Heading, Button } from "@chakra-ui/core";
-import Wrapper from "../components/Wrapper";
+import { Wrapper } from "../components/Wrapper";
 import { InputField } from "../components/InputField";
 import { useRegisterMutation } from "../generated/graphql";
 import { useRouter } from "next/router";

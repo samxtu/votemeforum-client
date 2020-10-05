@@ -6,13 +6,13 @@ import { withUrqlClient } from "next-urql";
 import React from "react";
 import { createUrqlClient } from "../../utils/createUrqlClient";
 import { InputField } from "../../components/InputField";
-import Wrapper from "../../components/Wrapper";
+import { Wrapper } from "../../components/Wrapper";
 import { useResetPasswordMutation } from "../../generated/graphql";
 import { useRouter } from "next/router";
 import NextLink from "next/link";
 import { useState } from "react";
 
-const ResetPassword: NextPage<{ token: string }> = ({ token }) => {
+const ResetPassword: NextPage = () => {
   const router = useRouter();
   const [, resetPassword] = useResetPasswordMutation();
   const [error, setError] = useState({
@@ -35,7 +35,10 @@ const ResetPassword: NextPage<{ token: string }> = ({ token }) => {
             }
             const user = await resetPassword({
               newPassword: values.newPassword,
-              token,
+              token:
+                typeof router.query.token === "string"
+                  ? router.query.token
+                  : "",
             });
             if (user.data?.resetPassword.errors) {
               setError(user.data.resetPassword.errors[0]);
@@ -104,12 +107,6 @@ const ResetPassword: NextPage<{ token: string }> = ({ token }) => {
       </Box>
     </Wrapper>
   );
-};
-
-ResetPassword.getInitialProps = ({ query }) => {
-  return {
-    token: query.token as string,
-  };
 };
 
 export default withUrqlClient(createUrqlClient)(ResetPassword);

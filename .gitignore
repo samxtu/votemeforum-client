@@ -32,3 +32,10 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# environmental variables
+.env
+next-env.d.ts
+
+# useless
+shortcutSnippety.txt

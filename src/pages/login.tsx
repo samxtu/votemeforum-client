@@ -2,7 +2,7 @@ import * as React from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
 import { Box, Heading, Button, Link, Flex } from "@chakra-ui/core";
-import Wrapper from "../components/Wrapper";
+import { Wrapper } from "../components/Wrapper";
 import { InputField } from "../components/InputField";
 import { useLoginMutation } from "../generated/graphql";
 import { useRouter } from "next/router";
@@ -30,6 +30,8 @@ const App: React.FunctionComponent<IAppProps> = ({}) => {
               if (newSchema) setErrors(newSchema);
             } else if (user.data?.login.user) {
               // worked
+              if (typeof router.query.next === "string")
+                router.push(router.query.next);
               router.push("/");
             }
           }}
@@ -49,12 +51,15 @@ const App: React.FunctionComponent<IAppProps> = ({}) => {
               <Heading mb={3}>Login:</Heading>
               <InputField
                 name="usernameOrEmail"
+                label="Username / email"
                 placeholder="Username or email!"
                 mt="5px"
                 touched={props.touched.usernameOrEmail}
               />
               <InputField
                 name="password"
+                placeholder="password"
+                label="Password"
                 mt="5px"
                 touched={props.touched.password}
                 type="password"

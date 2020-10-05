@@ -1,12 +1,15 @@
 import { Box } from "@chakra-ui/core";
 import * as React from "react";
+import { WrapperVariant } from "./Layout";
 
-interface IAppProps {
-  variant?: "Small" | "Medium" | "Large";
-  children: JSX.Element;
+interface IWrapperProps {
+  variant?: WrapperVariant;
 }
 
-export default function App({ variant = "Large", children }: IAppProps) {
+export const Wrapper: React.FC<IWrapperProps> = ({
+  variant = "Large",
+  children,
+}) => {
   return (
     <Box
       maxW={
@@ -19,4 +22,4 @@ export default function App({ variant = "Large", children }: IAppProps) {
       {children}
     </Box>
   );
-}
+};

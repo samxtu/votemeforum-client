@@ -9,7 +9,7 @@
     "generate": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
-    "@chakra-ui/core": "^0.5.2",
+    "@chakra-ui/core": "^0.8.0",
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
     "@urql/exchange-graphcache": "^3.1.1",

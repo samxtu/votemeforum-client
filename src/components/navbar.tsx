@@ -2,15 +2,12 @@ import { Box, Button, Flex, Link } from "@chakra-ui/core";
 import * as React from "react";
 import NextLink from "next/link";
 import { useLogoutMutation, useMeQuery } from "../generated/graphql";
-import { IS_SERVER } from "../constants";
 
 export interface IAppProps {}
 
 export default function App({}) {
-  const [{ data }] = useMeQuery({
-    pause: IS_SERVER,
-  });
-  const [{ fetching }, logoutMutant] = useLogoutMutation();
+  const [{ data }] = useMeQuery();
+  const [{ fetching }, logout] = useLogoutMutation();
   let body = null;
   if (!data?.me) {
     body = (
@@ -32,7 +29,7 @@ export default function App({}) {
           ml={2}
           isLoading={fetching}
           onClick={() => {
-            logoutMutant();
+            logout();
           }}
         >
           Logout
@@ -41,7 +38,7 @@ export default function App({}) {
     );
   }
   return (
-    <Flex bg="tan" p={4}>
+    <Flex position="sticky" top={0} zIndex={1} bg="tan" p={4}>
       {body}
     </Flex>
   );

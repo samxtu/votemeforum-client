@@ -38,6 +38,7 @@ export const InputField: React.FC<IAppProps> = ({
         size="sm"
         {...props}
         id={field.name}
+        placeholder={placeholder}
       />
       {touched ? <FormErrorMessage>{error}</FormErrorMessage> : null}
     </FormControl>
